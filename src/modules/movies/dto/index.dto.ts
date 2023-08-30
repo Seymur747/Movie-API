@@ -4,9 +4,12 @@ import {
   IsArray,
   ArrayNotEmpty,
   ArrayUnique,
-  IsDateString,
   IsOptional,
   Validate,
+  IsInt,
+  Min,
+  IsPositive,
+  IsNumberString,
 } from 'class-validator';
 
 import { Transform, Type } from 'class-transformer';
@@ -42,7 +45,6 @@ export class UpdateMovieDto {
   @IsString()
   description: string;
 
-
   @IsOptional()
   @Validate(CustomDateValidator)
   releaseDate: string;
@@ -53,4 +55,26 @@ export class UpdateMovieDto {
   @ArrayUnique()
   @IsString({ each: true })
   genre: string[];
+}
+
+export class NewGenreDto {
+  @IsNotEmpty()
+  @IsString()
+  name: string;
+}
+
+export class UpdateGenreDto {
+  @IsOptional()
+  @IsString()
+  name: string;
+}
+
+export class PaginationDto {
+  @IsOptional()
+  @IsNumberString()
+  page: number;
+
+  @IsOptional()
+  @IsNumberString()
+  limit: number;
 }

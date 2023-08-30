@@ -23,20 +23,23 @@ import { MoviesService } from './modules/movies/movies.service';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-
-      //REFACTOR
       useFactory: (configService: ConfigService) => {
         return {
           type: 'postgres',
-          host: configService.get<string>('database.host'),
+          host:
+            process.env.DB_HOST || configService.get<string>('database.host'),
           port: parseInt(configService.get<string>('database.port')),
-          username: configService.get<string>('database.username'),
-          password: configService.get<string>('database.password'),
-          database: configService.get<string>('database.name'),
+          username:
+            process.env.DB_USERNAME ||
+            configService.get<string>('database.username'),
+          password:
+            process.env.DB_PASSWORD ||
+            configService.get<string>('database.password'),
+          database:
+            process.env.DB_NAME || configService.get<string>('database.name'),
           entities,
           synchronize: true,
           timezone: 'Asia/Baku',
-          // logging: true,
         };
       },
     }),
