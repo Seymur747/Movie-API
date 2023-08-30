@@ -69,7 +69,7 @@ export class UpdateGenreDto {
   name: string;
 }
 
-export class PaginationDto {
+export class GetMovieListDto {
   @IsOptional()
   @IsNumberString()
   page: number;
@@ -77,4 +77,8 @@ export class PaginationDto {
   @IsOptional()
   @IsNumberString()
   limit: number;
+
+  @IsOptional()
+  @IsString()
+  search: string;
 }

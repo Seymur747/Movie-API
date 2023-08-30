@@ -14,15 +14,18 @@ import {
   BadRequestException,
   Query,
 } from '@nestjs/common';
+import { ILike, Brackets } from 'typeorm';
 import { MoviesService } from '../movies/movies.service';
 import {
   NewGenreDto,
   NewMovieDto,
   UpdateGenreDto,
   UpdateMovieDto,
-  PaginationDto,
+  GetMovieListDto,
 } from '../movies/dto/index.dto';
 import { QueryError } from 'src/exceptions/QueryError.exception';
+import { Movies } from 'src/db/entities/movies.entity';
+import { Genres } from 'src/db/entities/genres.entity';
 
 //Controller for handling HTTP requests
 @Controller()
@@ -30,16 +33,16 @@ export class UserController {
   constructor(public movieService: MoviesService) {}
 
   @Get('/movies')
-  async getMovieList(@Query(ValidationPipe) paginationDto: PaginationDto) {
-    const { page, limit = 10 } = paginationDto;
-    const movieList = await this.movieService.getMovieList(page, limit);
+  async getMovieList(@Query(ValidationPipe) movieListDto: GetMovieListDto): Promise<Movies[]> {
+    const { page, search, limit = 10 } = movieListDto;
+    const movieList = await this.movieService.getMovieList(search, page, limit);
     return movieList;
   }
 
   @Post('/movie')
   @HttpCode(201)
   @UsePipes(new ValidationPipe())
-  async addMovie(@Body() newMovieDto: NewMovieDto) {
+  async addMovie(@Body() newMovieDto: NewMovieDto): Promise<Movies> {
     try {
       const newMovie = await this.movieService.addMovie(newMovieDto);
       return newMovie;
@@ -50,7 +53,7 @@ export class UserController {
 
   @Delete('/movies/:movieId')
   @UsePipes(new ValidationPipe())
-  async deleteMovie(@Param('movieId', new ParseIntPipe()) movieId: number) {
+  async deleteMovie(@Param('movieId', new ParseIntPipe()) movieId: number): Promise<any> {
     const condition = { id: movieId };
     const movie = await this.movieService.getOneMovieBy(condition);
     if (!movie) {
@@ -94,7 +97,7 @@ export class UserController {
   }
 
   @Get('/genres')
-  async getGenreList() {
+  async getGenreList(): Promise<Genres[]> {
     const genreList = await this.movieService.getGenreList();
     return genreList;
   }
@@ -102,7 +105,7 @@ export class UserController {
   @Post('/genre')
   @HttpCode(201)
   @UsePipes(new ValidationPipe())
-  async addGenre(@Body() newGenreDto: NewGenreDto) {
+  async addGenre(@Body() newGenreDto: NewGenreDto): Promise<Genres> {
     try {
       const newGenre = await this.movieService.addGenre(newGenreDto);
       return newGenre;
@@ -113,7 +116,7 @@ export class UserController {
 
   @Delete('/genres/:genreId')
   @UsePipes(new ValidationPipe())
-  async deleteGenre(@Param('genreId', new ParseIntPipe()) genreId: number) {
+  async deleteGenre(@Param('genreId', new ParseIntPipe()) genreId: number): Promise<any> {
     const condition = { id: genreId };
     const genre = await this.movieService.getOneGenreBy(condition);
     if (!genre) {
