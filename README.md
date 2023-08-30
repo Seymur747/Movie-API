@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NestJS Movie API Readme</title>
+
 </head>
 <body>
+
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+</p>
 
 <h1>NestJS Movie API Readme</h1>
 
@@ -20,10 +24,7 @@
     </ul>
   </li>
   <li><a href="#api-endpoints">API Endpoints</a></li>
-  <li><a href="#folder-structure">Folder Structure</a></li>
   <li><a href="#technologies-used">Technologies Used</a></li>
-  <li><a href="#contributing">Contributing</a></li>
-  <li><a href="#license">License</a></li>
 </ul>
 
 <h2 id="getting-started">Getting Started</h2>
@@ -42,21 +43,14 @@
   <li>Clone this repository to your local machine:</li>
 </ol>
 
-<pre><code>git clone https://github.com/yourusername/nestjs-movie-api.git
+<pre><code>git clone https://github.com/Seymur747/Movie-API.git
 </code></pre>
 
-<ol start="2">
-  <li>Navigate to the project directory:</li>
-</ol>
-
-<pre><code>cd nestjs-movie-api
-</code></pre>
 
 <h3 id="running-with-docker-compose">Running with Docker Compose</h3>
 
 <ol>
   <li>Make sure you have Docker and Docker Compose installed.</li>
-  <li>Rename the <code>.env.example</code> file to <code>.env</code> and adjust the environment variables as needed.</li>
   <li>Open a terminal and navigate to the project directory.</li>
   <li>Build and start the Docker containers:</li>
 </ol>
@@ -74,24 +68,15 @@
 
 <ul>
   <li><code>GET /movies</code>: Get a list of all movies.</li>
-  <li><code>GET /movies/:id</code>: Get a specific movie by ID.</li>
-  <li><code>POST /movies</code>: Create a new movie.</li>
+  <li><code>POST /movie</code>: Create a new movie.</li>
   <li><code>PUT /movies/:id</code>: Update an existing movie.</li>
   <li><code>DELETE /movies/:id</code>: Delete a movie.</li>
+  <br/>
+  <li><code>GET /genres</code>: Get a list of all genres</li>
+  <li><code>POST /genre</code>: Create a new genre</li>
+  <li><code>PUT /genres/:id</code>: Update an existing genr</li>
+  <li><code>DELETE /genres/:id</code>: Delete a genre</li>
 </ul>
-
-<h2 id="folder-structure">Folder Structure</h2>
-
-<p>The project follows a standard NestJS application structure:</p>
-
-<pre><code>
-nestjs-movie-api/
-|-- src/
-|   |-- movies/
-|       |-- dto/
-|       ...
-|-- ...
-</code></pre>
 
 <h2 id="technologies-used">Technologies Used</h2>
 
@@ -101,13 +86,9 @@ nestjs-movie-api/
   <li><a href="https://www.docker.com/">Docker</a></li>
 </ul>
 
-<h2 id="contributing">Contributing</h2>
-
 ...
+<a href="https://api.postman.com/collections/17722722-69c644b1-9f88-43a4-8a08-1379df23e76f?access_key=PMAT-01H93A3PMY5C7VYBF58MNAW79D">For detail information about Api get this link and paste in Postman </a>
 
-<h2 id="license">License</h2>
-
-<p>This project is licensed under the <a href="LICENSE">MIT License</a>.</p>
 
 </body>
 </html>
