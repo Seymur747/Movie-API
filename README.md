@@ -87,7 +87,7 @@
 </ul>
 
 ...
-<a href="https://api.postman.com/collections/17722722-69c644b1-9f88-43a4-8a08-1379df23e76f?access_key=PMAT-01H93A3PMY5C7VYBF58MNAW79D">For detail information about Api get this link and paste in Postman </a>
+<a href="https://api.postman.com/collections/17722722-69c644b1-9f88-43a4-8a08-1379df23e76f?access_key=PMAT-01H93A3PMY5C7VYBF58MNAW79D">For detail information about Api copy this link and paste in Postman </a>
 
 
 </body>
