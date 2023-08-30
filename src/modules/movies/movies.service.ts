@@ -10,8 +10,8 @@ import {
 import { Genres } from 'src/db/entities/genres.entity';
 import { paginate } from 'src/utils';
 
-
 //Service for handling database CRUD methods
+
 @Injectable()
 export class MoviesService {
   private movieRepo: Repository<Movies>;
@@ -21,8 +21,8 @@ export class MoviesService {
     this.movieRepo = dataSource.getRepository('movies');
     this.genreRepo = dataSource.getRepository('genres');
   }
-  async getMovieList(page?: number) {
-    const pagination = page ? paginate(page) : {};
+  async getMovieList(page?: number, limit = 10) {
+    const pagination = page ? paginate(page, limit) : {};
     const movieList = await this.movieRepo.find(pagination);
     return movieList;
   }

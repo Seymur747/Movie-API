@@ -20,7 +20,7 @@ import {
   NewMovieDto,
   UpdateGenreDto,
   UpdateMovieDto,
-  PaginationDto
+  PaginationDto,
 } from '../movies/dto/index.dto';
 import { QueryError } from 'src/exceptions/QueryError.exception';
 
@@ -31,8 +31,8 @@ export class UserController {
 
   @Get('/movies')
   async getMovieList(@Query(ValidationPipe) paginationDto: PaginationDto) {
-    const { page } = paginationDto;
-    const movieList = await this.movieService.getMovieList(page);
+    const { page, limit = 10 } = paginationDto;
+    const movieList = await this.movieService.getMovieList(page, limit);
     return movieList;
   }
 
